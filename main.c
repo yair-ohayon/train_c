@@ -1,17 +1,15 @@
 #include <stdio.h>
 #include "data.h"
 
+extern int a;
 
 
 
 int main(){
-    printf("Hello World\n");
-    print_something("FF");
+    printf("Hello World %d\n",a);
+    a++;
+    printf("Hello World %d\n",a);
+
 
 }
 
-
-int print_something(char* msg){
-    printf("Message is %s ",msg);
-    return 0;
-}

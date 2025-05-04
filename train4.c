@@ -39,7 +39,7 @@ int main(){
     int a  =2;
 
     int res = (a << 4) -a-a-a-a;
-    printf("%f",log2(64 & -64));
+    printf("%f\n",log2(64 & -64));
     printf("Size of Flags struct: %zu bytes\n", sizeof(struct Flags));
     return 0;
 
