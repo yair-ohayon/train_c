@@ -3243,7 +3243,47 @@ void func() {
 
 **Note:** In C++, `auto` has a completely different meaning (type inference), but in C it's mostly redundant and rarely used explicitly today.
 
+# dereferncing precedence
+Excellent follow-up — and you're thinking in the right direction!
+
+### ✅ Short answer:
+
+Yes, in **most cases**, the **postfix** increment/decrement operators (`a++`, `a--`) have **higher precedence** than the dereference (`*`), address-of (`&`), and other unary operators.
+
 ---
 
-Would you like a visual memory layout diagram for these memory segments?
+### Here's the general precedence order (relevant parts):
+
+| Operator Type | Operators                                        | Precedence (High → Low) | Associativity |
+| ------------- | ------------------------------------------------ | ----------------------- | ------------- |
+| **Postfix**   | `expr++`, `expr--`                               | **High**                | Left to right |
+| **Unary**     | `*`, `&`, `++expr`, `--expr`, `+`, `-`, `!`, `~` | Lower                   | Right to left |
+
+---
+
+### 🔍 So:
+
+1. **`*a++`** → means `*(a++)` — increment pointer, then dereference old location.
+2. **`*++a`** → means `*(++a)` — increment pointer first, then dereference new location.
+3. **`(*a)++`** → dereference first, then increment the **value** at `a`.
+
+---
+
+### 💡 Rule of Thumb:
+
+* **Postfix `++/--`** always take precedence over dereferencing (`*`).
+* **Prefix `++/--`** have **equal precedence** to `*`, but they are evaluated **right to left** — so grouping still matters.
+
+---
+
+### Summary Table:
+
+| Expression | Meaning                   | What happens                    |
+| ---------- | ------------------------- | ------------------------------- |
+| `*a++`     | `*(a++)`                  | Use current value, then `a++`   |
+| `(*a)++`   | Dereference, then value++ | Modify value at `a`             |
+| `*++a`     | `*(++a)`                  | Increment `a`, then dereference |
+| `++*a`     | `++(*a)`                  | Increment the value at `a`      |
+
+---
 
